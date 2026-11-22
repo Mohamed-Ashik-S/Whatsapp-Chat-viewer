@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chat Archive</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="side">
+    <header class="bar">
+      <h1>Chat Archive</h1>
+      <button id="addBtn" class="btn primary" type="button">Add chats</button>
+    </header>
+    <div id="list" class="list" role="list"></div>
+    <div id="empty" class="empty" hidden>
+      <h2>Open an exported chat</h2>
+      <p>Tap <strong>Add chats</strong> and pick one or more WhatsApp exports (.zip or .txt). You can add as many chats as you like.</p>
+      <ol>
+        <li>In WhatsApp, open a chat.</li>
+        <li>Menu, More, Export chat.</li>
+        <li>Choose Include media or Without media, then save the file.</li>
+      </ol>
+      <p class="muted">Everything stays on this phone. The app has no internet access.</p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header class="bar chatbar" id="chatbar" hidden>
+      <button id="backBtn" class="icon" type="button" aria-label="Back to chats">&#8592;</button>
+      <div class="avatar" id="chatAvatar"></div>
+      <div class="titles">
+        <div class="name" id="chatName"></div>
+        <div class="sub" id="chatSub"></div>
+      </div>
+      <button id="searchBtn" class="icon" type="button" aria-label="Search in chat">&#9906;</button>
+      <button id="menuBtn" class="icon" type="button" aria-label="Chat options">&#8942;</button>
+    </header>
+    <div id="searchBar" class="searchbar" hidden>
+      <input id="q" type="search" placeholder="Search this chat" autocomplete="off" enterkeyhint="search">
+      <span id="hits" class="hits"></span>
+      <button id="prevHit" class="icon sm" type="button" aria-label="Previous match">&#8593;</button>
+      <button id="nextHit" class="icon sm" type="button" aria-label="Next match">&#8595;</button>
+      <label class="icon sm datepick" aria-label="Jump to date">
+        <span aria-hidden="true">&#128197;</span>
+        <input id="jumpDate" type="date">
+      </label>
+    </div>
+    <div id="msgs" class="msgs" hidden></div>
+    <div id="placeholder" class="placeholder">Select a chat to read it.</div>
+  </main>
+</div>
+
+<div id="sheetWrap" class="sheetwrap" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <h3 id="sheetTitle">Chat options</h3>
+    <div id="sheetBody" class="sheetbody"></div>
+    <button id="sheetClose" class="btn" type="button">Close</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<input id="picker" type="file" multiple hidden>
+
+<script src="jszip.min.js"></script>
+<script src="parser.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
